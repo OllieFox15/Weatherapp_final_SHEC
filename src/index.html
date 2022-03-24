@@ -21,10 +21,10 @@
             <div class="clearfix">
         
      
-            <h1>Auckland</h1>
+            <h1 id="city"></h1>
       <ul>
         <li>Friday date/time 0500</li>
-        <li>fine partly cloudy</li>
+        <li id="description"></li>
       </ul>
 
       <div class="row">
@@ -32,7 +32,7 @@
             <div class="clearfix weather-temperature">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp9GTELTRPoQCBbl_tDz2IxvDjaJXQVe9662hxqfz0Q7BPTtcFdaVrj_MLDXdRfXsBBnc&usqp=CAU" alt="sunny" class="float-left" />
             
-              <strong>  12 </strong> 
+              <strong id="temperature"> </strong> 
               <small class="units" > 
                   C | F </small> 
                   
@@ -42,9 +42,8 @@
             </div>
           <div class="col-md-6">
               <ul>
-                <li>Precipitation:0%</li>
-                <li>Humidity: 73%</li>
-                <li>wind: 23km/hr</li>
+                <li>Humidity:<span id="humidity"></span></li>
+                <li>Wind:<span id="wind"></span> Km/h </li>
                 
               </ul>
              
@@ -58,7 +57,7 @@
 </div>   
 </div> 
     </body>
-    <script src="src/java.js"></script>
+    <script src="java.js"></script>
   </body>
 
 </html>
