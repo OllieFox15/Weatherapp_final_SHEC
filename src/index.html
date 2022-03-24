@@ -18,12 +18,21 @@
     <div class="container">
         <div class="weatherapp-wrapper">
         <div class="weather-app">
+            <form id="searchform" class="mb-2">
+                <div class="row">
+                    <div class="col-md-9">
+                <input type="search" placeholder="type a city name ..." class="form-control"/> </div>
+            <div class="col-md-3">
+                <input type="submit" value="Search" class="btn btn-primary w-100"/>
+            </div>
+            </div>
+            </form>
             <div class="clearfix">
         
      
             <h1 id="city"></h1>
       <ul>
-        <li>Friday date/time 0500</li>
+        <li id="dateTime"></li>
         <li id="description"></li>
       </ul>
 
