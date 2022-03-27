@@ -1,5 +1,15 @@
-apiKey = `db66422e747e63d094483b92402e4d1e`;
-apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Auckland&appid=${apiKey}&units=metric`;
+function search(city) {
+  apiKey = `db66422e747e63d094483b92402e4d1e`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+search("Moscow");
 
 /*function formatDate(timestamp) {
   //calculate the date
@@ -26,5 +36,6 @@ function displayTemperature(response) {
   windElement.innerHTML = response.data.wind.speed;
   //dateTimeElement.innerHTML = formatDate(response.data.dt * 1000);
 }
-console.log(apiUrl);
-axios.get(apiUrl).then(displayTemperature);
+
+let form = document.querySelector("#searchform");
+form.addEventListener("submit", handleSubmit);
