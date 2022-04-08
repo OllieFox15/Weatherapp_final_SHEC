@@ -9,7 +9,7 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-search("Wellington");
+search("Auckland");
 
 function formatDate(timestamp) {
   //calculate the date
@@ -40,7 +40,7 @@ function formatDate(timestamp) {
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sun"];
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
 }
 
@@ -55,7 +55,7 @@ function displayForecast(response) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
-        `     <div class= "col-2" class="weather-forecast-dated" id="weather-forecast-dated" >
+        `      <div class= "col-2" class="weather-forecast-dated" id="weather-forecast-dated" >
                 <span class="weather-forecast-dated" id="weather-forecast-dated" >
                 ${formatDay(forecastDay.dt)} </span>
                <img  
@@ -63,30 +63,17 @@ function displayForecast(response) {
              forecastDay.weather[0].icon
            }@2x.png"
           alt=""
-          width="42"
+          width="52"
               <bold> <span class="weather-forecast-high" id="weather-forecast-high"> ${Math.round(
                 forecastDay.temp.max
               )} &deg; 
-              </bold> <span class="weather-forecast-low" id="weather-forecast-low"> ${Math.round(
+              </bold>  <span class="weather-forecast-low" id="weather-forecast-low"> ${Math.round(
                 forecastDay.temp.min
-              )}&deg;  </span> 
+              )}&deg;   </span> 
             
                       </div>`;
     }
   });
-  /*forecastHTML =
-    forecastHTML +
-    ` 
-              <div class= "col-2" class="weather-forecast-dated" id="weather-forecast-dated" >
-                <span class="weather-forecast-dated" id="weather-forecast-dated" >
-                ${forecastDay.dt}</span>
-               <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="sunny" width="60"
-                />
-              <bold> <span class="weather-forecast-high" id="weather-forecast-high"> ${forecastDay.temp.max} </bold> 
-              <span class="weather-forecast-low" id="weather-forecast-low">${forecastDay.temp.min} </span> 
-            </div> 
-  
-              `;*/
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
@@ -129,4 +116,35 @@ function displayTemperature(response) {
 let form = document.querySelector("#searchform");
 form.addEventListener("submit", handleSubmit);
 
-//displayForecast();
+/*function showPosition(position) {
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+}
+*/
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+/*function showPosition(){
+let h1 = document.querySelector('h1');
+  h1.innerHTML = ``
+
+
+}*/
+
+function showWeather(response) {
+  let h1 = document.querySelector("h1");
+  console.log(response);
+  h1.innerHTML = `${response.data.name}`;
+}
+
+function showPosition(position) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(url).then(showWeather);
+}
+
+let button = document.querySelector("#currentLocation");
+button.addEventListener("click", getCurrentPosition);

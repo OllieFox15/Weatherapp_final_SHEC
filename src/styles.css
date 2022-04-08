@@ -34,6 +34,7 @@ li:first-letter {
 }
 .codeby {
   font-size: small;
+  font-style: italic;
 }
 
 .weather-temperature img {
